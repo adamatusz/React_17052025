@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import "./weather.css";
 
 const Weather = () => {
@@ -37,7 +37,7 @@ const Weather = () => {
 		}
 	};
 
-	const fetchWeather = async () => {
+	const fetchWeather = useCallback(async () => {
 		setLoading(true);
 		setError(null);
 		try {
@@ -64,11 +64,12 @@ const Weather = () => {
 		} finally {
 			setLoading(false);
 		}
-	};
+	// Only re-create fetchWeather when location.latitude or location.longitude changes
+	}, [location.latitude, location.longitude]);
 
 	useEffect(() => {
-		fetchWeather();
-	}, []);
+		fetchWeather();	
+	}, [fetchWeather]);
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
