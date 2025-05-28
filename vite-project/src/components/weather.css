@@ -60,6 +60,10 @@
     margin: 10px 0;
     text-align: center;
   }
+
+ li {
+    list-style-type: none;
+  }
   
   .weather-container .weather-info {
     margin-top: 20px;

@@ -21,6 +21,7 @@ const Weather = () => {
 
 	const fetchCityName = async (lat: string, lon: string) => {
 		try {
+			// Fetch city name from OpenStreetMap Nominatim API
 			const response = await fetch(
 				`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
 			);
